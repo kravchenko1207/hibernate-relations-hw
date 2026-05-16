@@ -1,6 +1,6 @@
 package mate.academy.hibernate.relations.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,9 @@ public class Actor implements Cloneable {
     @JoinColumn(name = "country_id")
     private Country country;
 
+    @ManyToMany(mappedBy = "actors")
+    private List<Movie> movies = new ArrayList<>();
+
     public List<Movie> getMovies() {
         return movies;
     }
@@ -24,9 +27,6 @@ public class Actor implements Cloneable {
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
-
-    @ManyToMany(mappedBy = "actors")
-    private List<Movie> movies = new ArrayList<>();
 
     public Actor() {
     }

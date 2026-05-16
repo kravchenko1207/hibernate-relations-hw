@@ -5,6 +5,7 @@ import mate.academy.hibernate.relations.dao.AbstractTest;
 import mate.academy.hibernate.relations.dao.ActorDao;
 import mate.academy.hibernate.relations.model.Actor;
 import mate.academy.hibernate.relations.model.Country;
+import mate.academy.hibernate.relations.model.Movie;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +15,11 @@ public class ActorDaoImplTest extends AbstractTest {
 
     @Override
     protected Class<?>[] entities() {
-        return new Class[]{Actor.class, Country.class};
+        return new Class[]{
+                Actor.class,
+                Country.class,
+                Movie.class
+        };
     }
 
     @Test

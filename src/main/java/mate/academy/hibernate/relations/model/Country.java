@@ -1,6 +1,6 @@
 package mate.academy.hibernate.relations.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,12 +13,12 @@ public class Country implements Cloneable {
     private Long id;
     private String name;
 
+    @OneToMany(mappedBy = "country")
+    private Set<Actor> actorSet = new HashSet<>();
+
     public Set<Actor> getActorSet() {
         return actorSet;
     }
-
-    @OneToMany(mappedBy = "country")
-    private Set<Actor> actorSet = new HashSet<>();
 
     public Country() {
     }

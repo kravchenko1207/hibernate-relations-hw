@@ -1,6 +1,6 @@
 package mate.academy.hibernate.relations.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +10,7 @@ public class Movie implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
