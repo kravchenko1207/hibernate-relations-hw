@@ -12,8 +12,13 @@ public class Movie implements Cloneable {
     private Long id;
     private String title;
 
-    @ManyToMany(mappedBy = "movies")
-    private List<Actor> actors;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "actors_movies",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
+    private List<Actor> actors = new ArrayList<>();
 
     public Movie() {
     }

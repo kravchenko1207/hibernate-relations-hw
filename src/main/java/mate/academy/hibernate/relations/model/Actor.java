@@ -2,6 +2,7 @@ package mate.academy.hibernate.relations.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,13 +25,8 @@ public class Actor implements Cloneable {
         this.movies = movies;
     }
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "actors_movie",
-            joinColumns = @JoinColumn(name = "actor_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id")
-    )
-    private List<Movie> movies;
+    @ManyToMany(mappedBy = "actors")
+    private List<Movie> movies = new ArrayList<>();
 
     public Actor() {
     }
