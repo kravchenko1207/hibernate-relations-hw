@@ -11,6 +11,10 @@ public class Country implements Cloneable {
     private Long id;
     private String name;
 
+    public Set<Actor> getActorSet() {
+        return actorSet;
+    }
+
     @OneToMany(mappedBy = "country")
     private Set<Actor> actorSet;
 
