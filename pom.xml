@@ -4,21 +4,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>mate-academy</groupId>
-    <artifactId>hibernate-relations-hw</artifactId>
+    <groupId>org.example</groupId>
+    <artifactId>hibernate_intro</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <jdk.version>17</jdk.version>
+        <java.version>20</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.checkstyle.plugin.version>3.1.1</maven.checkstyle.plugin.version>
-        <maven.checkstyle.plugin.configLocation>
-            https://raw.githubusercontent.com/mate-academy/style-guides/master/java/checkstyle.xml
-        </maven.checkstyle.plugin.configLocation>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.4.4.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.3.0</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -28,46 +35,24 @@
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>2.7.2</version>
-            <scope>test</scope>
+            <version>2.7.1</version>
+            <scope>runtime</scope>
         </dependency>
+
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.3.0</version>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
                 <configuration>
-                    <configLocation>${maven.checkstyle.plugin.configLocation}</configLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <linkXRef>false</linkXRef>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
-                    <configuration>
-                        <source>${jdk.version}</source>
-                        <target>${jdk.version}</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 </project>
-

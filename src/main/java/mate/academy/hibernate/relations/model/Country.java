@@ -1,8 +1,18 @@
 package mate.academy.hibernate.relations.model;
 
+import jakarta.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table (name = "countries")
 public class Country implements Cloneable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "country")
+    private Set<Actor> actorSet;
 
     public Country() {
     }
