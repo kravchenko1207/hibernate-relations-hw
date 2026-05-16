@@ -37,44 +37,23 @@ public abstract class AbstractDao {
     }
 
     public <T> T get(Long id, Class<T> clazz) {
-        Session session = null;
-        Transaction transaction = null;
-        try {
-            session = factory.openSession();
-            transaction = session.beginTransaction();
-            T entity = session.get(clazz, id);
-            transaction.commit();
-            return entity;
+        try (Session session = factory.openSession()) {
+            return session.get(clazz, id);
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can not find id " + id);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
+            throw new DataProcessingException(
+                    "Can not find by id " + id, e);
         }
     }
 
     public <T> List<T> getAll(Class<T> clazz) {
-        Session session = null;
-        Transaction transaction = null;
-        try {
-            session = factory.openSession();
-            transaction = session.beginTransaction();
-            List<T> entities = session.createQuery("FROM " + clazz.getSimpleName(), clazz).getResultList();
-            transaction.commit();
-            return entities;
+        try (Session session = factory.openSession()) {
+            return session.createQuery(
+                    "FROM " + clazz.getSimpleName(), clazz
+            ).getResultList();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can not find all elements " + clazz.getSimpleName(), e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
+            throw new DataProcessingException(
+                    "Can not get all elements of " + clazz.getSimpleName(), e
+            );
         }
     }
 
