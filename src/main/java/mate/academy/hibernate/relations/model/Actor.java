@@ -17,17 +17,6 @@ public class Actor implements Cloneable {
     @JoinColumn(name = "country_id")
     private Country country;
 
-    @ManyToMany(mappedBy = "actors")
-    private List<Movie> movies = new ArrayList<>();
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
-
     public Actor() {
     }
 

@@ -13,13 +13,6 @@ public class Country implements Cloneable {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "country")
-    private Set<Actor> actorSet = new HashSet<>();
-
-    public Set<Actor> getActorSet() {
-        return actorSet;
-    }
-
     public Country() {
     }
 
